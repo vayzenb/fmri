@@ -26,6 +26,7 @@ cd $subj_dir
 mkdir derivatives
 mkdir derivatives/covs
 mkdir derivatives/fsl
+mkdir covs
 
 #echo $sub
 bet $subj_dir/anat/sub-${sub}_ses-01_T1w.nii.gz $subj_dir/anat/sub-${sub}_ses-01_T1w_brain.nii.gz #-R -B -f 0.5
@@ -37,7 +38,7 @@ mkdir $cc
 cd ${cc}
 
 for exp in "${expNum[@]}"; do
-	mkdir run0${exp} #create run folder
+	mkdir run-0${exp} #create run folder
 	
 	fsl_motion_outliers -i $subj_dir/func/sub-${sub}_ses-01_task-${cc}_run-0${exp}_bold.nii.gz -o run0${exp}/sub-${sub}_ses-01_task-${cc}_run-0${exp}_bold_spikes.txt --dummy=0 #calculate motion spikes from nifty
 
