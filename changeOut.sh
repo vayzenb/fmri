@@ -23,32 +23,31 @@ do
 
 subjDir=$dataDir/sub-${sub}/ses-01/derivatives/fsl
 
-
 #cd $subjDir
 
-for cc in $cond; do
-	runDir=$subjDir/${cc}
-	ogRun=$ogDir/${cc}
+	for cc in $cond; do
+		runDir=$subjDir/${cc}
+		ogRun=$ogDir/${cc}
 
-	for r in "${runs[@]}";
-	do
+		echo $runDir
+		echo $ogDir
+		for r in "${runs[@]}";
+		do
 
-		cp ${ogRun}/run01/1stLevel.fsf $runDir/run0${r}/1stLevel.fsf #copies fsf from run 1 into the other runs (cp = copy)
 
-		sed -i '' "s/${ogSub}/${sub}/g" $runDir/run0${r}/1stLevel.fsf #change subject
-		sed -i '' "s/run01/run${r}/g" $runDir/run0${r}/1stLevel.fsf #change run for output
-		sed -i '' "s/run-01/${r}/g" $runDir/run0${r}/1stLevel.fsf #change run for output
-		sed -i '' "s/Run1/Run${runs[${r}]}/g" $subjDir/Run${runs[${r}]}/1stLevel_Activation.fsf
-	sed -i '' "s/CBL${ogCBL}/CBL${cbls[${r}]}/g" $subjDir/Run${runs[${r}]}/1stLevel_Activation.fsf
-	sed -i '' "s/${ogType}/${objType[${r}]}/g" $subjDir/Run${runs[${r}]}/1stLevel_Activation.fsf
+			cp ${ogRun}/run-01/1stLevel.fsf $runDir/run-0${r}/1stLevel.fsf #copies fsf from run 1 into the other runs (cp = copy)
 
+			sed -i "s/${ogSub}/${sub}/g" $runDir/run-0${r}/1stLevel.fsf #change subject
+			sed -i "s/run-01/run-0${r}/g" $runDir/run-0${r}/1stLevel.fsf #change run for file and output
+			sed -i "s/Run1/Run${r}/g" $runDir/run-0${r}/1stLevel.fsf #change run for covs
+
+		done
+
+	#cp $dataDir/DOC${ogSub}/${exp}_func/HighLevel_Activation.fsf $subjDir/HighLevel_Activation.fsf #copies fsf from run 1 into the other runs (cp = copy)
+	#sed -i '' "s/${ogSub}/${s}/g" $subjDir/HighLevel_Activation.fsf
+
+	echo $s
 	done
-
-cp $dataDir/DOC${ogSub}/${exp}_func/HighLevel_Activation.fsf $subjDir/HighLevel_Activation.fsf #copies fsf from run 1 into the other runs (cp = copy)
-
-sed -i '' "s/${ogSub}/${s}/g" $subjDir/HighLevel_Activation.fsf
-
-echo $s
 done
 
 echo 'Dunzo!!!'
