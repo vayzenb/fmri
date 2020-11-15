@@ -1,0 +1,6 @@
+tkmedit started: Sun Nov 15 13:14:16 2020
+
+	/opt/freesurfer/5.3.0/tktools/tkmedit.bin 
+
+$Id: tkmedit.c,v 1.343 2011/03/01 01:41:22 nicks Exp $ $Name: stable5 $
+Set user home dir to /home/vayzenbe/GitHub_Repos/fmri

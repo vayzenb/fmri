@@ -6,8 +6,8 @@ mniBrain=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/MNI152_T1_2mm_brain.nii.gz
 
 subj_list="docnet1001"
 exp="docnet"
-roi="LO PFS"
-parcelType=julian_parcels
+roi="V3ab"
+parcelType=mruczek_parcels/binary
 
 parcelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}
