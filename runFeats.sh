@@ -6,10 +6,11 @@
 # Created by VA on 2.23.20
 module load fsl-6.0.3
 
-subj_list="docnet1002" #03 04 05 06 07 08 09 10 11 12 13 14 15 16"
+subj_list="docnet1001 docnet1002" #03 04 05 06 07 08 09 10 11 12 13 14 15 16"
 runs="1 2 3 4 5 6"
 exp="docnet"
 cond="spaceloc adaptation"
+cond="spaceloc"
 
 
 dataDir=/lab_data/behrmannlab/vlad/${exp}

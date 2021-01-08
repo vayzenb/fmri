@@ -7,11 +7,12 @@
 #
 
 
-subj_list="1002"
+subj_list="1001 1002"
 runs=("1" "2" "3" "4" "5" "6")
 ogSub="1001"
 exp="docnet"
-cond="spaceloc adaptation"
+#cond="spaceloc adaptation"
+cond="spaceloc"
 #suffix="1stLevel_Activation" ${suffix}
 
 dataDir=/lab_data/behrmannlab/vlad/${exp}
