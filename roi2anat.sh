@@ -4,10 +4,12 @@ module load fsl-6.0.3
 
 mniBrain=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/MNI152_T1_2mm_brain.nii.gz
 
-subj_list="docnet1001"
+subj_list="docnet1002"
 exp="docnet"
-roi="V3ab"
-parcelType=mruczek_parcels/binary
+#roi="V3ab PPC APC"
+roi="LO PFS"
+#parcelType=mruczek_parcels/binary
+parcelType=julian_parcels
 
 parcelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}

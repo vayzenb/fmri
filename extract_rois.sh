@@ -6,7 +6,7 @@
 
 calc(){ awk "BEGIN { print "$*" }"; }
 
-subj_list="docnet1001"
+subj_list="docnet1002"
 exp="docnet"
 cond="spaceloc"
 

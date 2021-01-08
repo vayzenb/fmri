@@ -7,9 +7,9 @@
 #
 
 
-subj_list="docnet1001"
+subj_list="1002"
 runs=("1" "2" "3" "4" "5" "6")
-ogSub="docnet1001"
+ogSub="1001"
 exp="docnet"
 cond="spaceloc adaptation"
 #suffix="1stLevel_Activation" ${suffix}
@@ -17,11 +17,11 @@ cond="spaceloc adaptation"
 dataDir=/lab_data/behrmannlab/vlad/${exp}
 
 ###############################
-ogDir=$dataDir/sub-${ogSub}/ses-01/derivatives/fsl
+ogDir=$dataDir/sub-${exp}${ogSub}/ses-01/derivatives/fsl
 for sub in $subj_list
 do
 
-subjDir=$dataDir/sub-${sub}/ses-01/derivatives/fsl
+subjDir=$dataDir/sub-${exp}${sub}/ses-01/derivatives/fsl
 
 #cd $subjDir
 
@@ -43,8 +43,11 @@ subjDir=$dataDir/sub-${sub}/ses-01/derivatives/fsl
 
 		done
 
-	#cp $dataDir/DOC${ogSub}/${exp}_func/HighLevel_Activation.fsf $subjDir/HighLevel_Activation.fsf #copies fsf from run 1 into the other runs (cp = copy)
-	#sed -i '' "s/${ogSub}/${s}/g" $subjDir/HighLevel_Activation.fsf
+	cp ${ogRun}/HighLevel_4Runs.fsf $runDir/HighLevel_4Runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
+	sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_4Runs.fsf
+	
+	cp ${ogRun}/HighLevel_6Runs.fsf $runDir/HighLevel_6Runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
+	sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_6Runs.fsf
 
 	echo $s
 	done

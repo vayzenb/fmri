@@ -6,11 +6,11 @@
 
 module load fsl-6.0.3
 
-subj_list="docnet1001"
+subj_list="docnet1002"
 cond="spaceloc adaptation"
 
 #MRI run number
-expNum=(2 3 4 5 6)
+expNum=(1 2 3 4 5 6)
 locNum=(1 2 3 4)
 
 # main directory where setup files are stored
@@ -27,7 +27,7 @@ mkdir derivatives/fsl
 mkdir covs
 
 #echo $sub
-#bet $subj_dir/anat/sub-${sub}_ses-01_T1w.nii.gz $subj_dir/anat/sub-${sub}_ses-01_T1w_brain.nii.gz #-R -B -f 0.5
+bet $subj_dir/anat/sub-${sub}_ses-01_T1w.nii.gz $subj_dir/anat/sub-${sub}_ses-01_T1w_brain.nii.gz #-R -B -f 0.5
 cd derivatives/fsl
 for cc in $cond; do
 

@@ -1,10 +1,7 @@
 #!/bin/bash
 #Calculate percent signal change (PSC) to each task condition of interest
 
-subj_list="docnet1001"
-
-
-subj_list="docnet1001"
+subj_list="docnet1001 docnet1002"
 exp="docnet"
 cond="spaceloc"
 
@@ -23,6 +20,7 @@ do
 	roiDir=$subjDir/rois
 	funcDir=$subjDir/fsl/$cond/HighLevel_6Runs.gfeat
 
+	rm -rf $subjDir/beta
 	mkdir $subjDir/beta
 	resultDir=$subjDir/beta
 
