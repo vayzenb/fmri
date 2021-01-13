@@ -6,10 +6,10 @@ module load fsl-6.0.3
 
 calc(){ awk "BEGIN { print "$*" }"; }
 
-subj_list="docnet1001 docnet1002"
+subj_list="docnet1002"
 exp="docnet"
 cond="spaceloc"
-suf="_6Runs"
+suf="_all"
 
 #Rois
 roi=("V3ab" "PPC" "APC" "LO" "PFS" )                          

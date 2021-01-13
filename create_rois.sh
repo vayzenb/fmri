@@ -10,13 +10,13 @@ calc(){ awk "BEGIN { print "$*" }"; }
 subj_list="docnet1001 docnet1002"
 exp="docnet"
 cond="spaceloc"
-suff="_odd _even"
+suff="_all _odd _even"
 
 #Rois
-roi=("V3ab" "PPC" "APC" "LO" "PFS" )                          
+roi=("V3ab" "PPC" "APC" "V4" "LO" "PFS")
 
 #Specify copes (contrasts) of interest
-copeNum=("1" "1" "1" "2" "2")
+copeNum=("1" "1" "1" "2" "2" "2")
 
 #Extract top 1-n % voxels in ROI
 n=90
