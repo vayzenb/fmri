@@ -1,19 +1,17 @@
 import subprocess
 import os
 
-subj_list=["docnet1001"]
-exp="docnet"
-cond="spaceloc"
-suff=["_all", "_odd", "_even"]
+subj_list=["spaceloc1002"]
+exp="spaceloc"
+cond=["spaceloc", "depthloc", "distloc", "toolloc"]
+loc_suf="_roi"
 
 #Rois
 roi=["V3ab", "PPC", "APC", "V4", "LO", "PFS"]
 
 #Specify copes (contrasts) of interest
-cope_num=[1, 1, 1, 2, 2, 2]
+cope_num=[[1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1,1,1,5,5,5]]
 
-#Extract top 1-n % voxels in ROI
-n=90
 
 exp_dir=f"/lab_data/behrmannlab/vlad/{exp}"
 
@@ -23,17 +21,17 @@ for ss in subj_list:
 
     os.makedirs(f'{roi_dir}/data', exist_ok=True)
 
-    for sf in suff:
-        func_dir = f'{sub_dir}/fsl/{cond}/HighLevel{sf}_smooth.gfeat'
+    for cc_num, cc in enumerate(cond):
+        func_dir = f'{sub_dir}/fsl/{cc}/HighLevel{loc_suf}.gfeat'
 
         for rr in range(0,len(roi)):
             for lr in ["l", "r"]:
                 #Maybe check if ROI and data exist before creating it
-                print(ss, lr, rr, sf)
+                print(ss, lr, rr, cc)
 
                 #define ROI directory
-                roi_nifti = f'{roi_dir}/{lr}{roi[rr]}{sf}.nii.gz'
-                cope_dir = f'{func_dir}/cope{cope_num[rr]}.feat'
+                roi_nifti = f'{roi_dir}/{lr}{roi[rr]}_{cc}.nii.gz'
+                cope_dir = f'{func_dir}/cope{cope_num[cc_num][rr]}.feat'
                 #print(cope_dir)
 
                 #Extract ROI by multiplying the cluster-correct mask by broad anatomical parcel
@@ -45,10 +43,10 @@ for ss in subj_list:
                 vox_num = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True) #this subprocess captures the output
 
                 if vox_num.stdout[0] == "0":
-                    os.remove(f'{roi_dir}/{lr}{roi[rr]}{sf}.nii.gz')
+                    os.remove(roi_nifti)
                     
                 else: #else save functional data from mask
-                    roi_data = f'{roi_dir}/data/{lr}{roi[rr]}{sf}'
+                    roi_data = f'{roi_dir}/data/{lr}{roi[rr]}_{cc}'
 
                     bash_cmd = f'fslmeants -i {cope_dir}/stats/zstat1.nii.gz -m {roi_nifti} -o {roi_data}.txt --showall --transpose'
                     subprocess.run(bash_cmd.split(), check=True)

@@ -4,12 +4,12 @@ module load fsl-6.0.3
 
 mniBrain=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/MNI152_T1_2mm_brain.nii.gz
 
-subj_list="docnet1001 docnet1002"
-exp="docnet"
-#roi="V3ab PPC APC"
-roi="V4"
-parcelType=mruczek_parcels/binary
-#parcelType=julian_parcels
+subj_list="spaceloc1001"
+exp="spaceloc"
+#roi="V3ab V4 PPC APC"
+roi="LO PFS"
+#parcelType=mruczek_parcels/binary
+parcelType=julian_parcels
 
 parcelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}
@@ -19,6 +19,7 @@ for sub in $subj_list
 do
 	subjDir=$studyDir/sub-${sub}/ses-01/derivatives
 	anat=$studyDir/sub-${sub}/ses-01/anat/sub-${sub}_ses-01_T1w_brain.nii.gz	
+    anat=$mniBrain
 	mkdir $subjDir/rois
 	mkdir $subjDir/rois/parcels
 	roiDir=$subjDir/rois/parcels

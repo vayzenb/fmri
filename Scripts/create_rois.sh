@@ -7,10 +7,10 @@ module load fsl-6.0.3
 
 calc(){ awk "BEGIN { print "$*" }"; }
 
-subj_list="docnet1001 docnet1002"
-exp="docnet"
+subj_list="spaceloc1001"
+exp="spaceloc"
 cond="spaceloc"
-suff="_all _odd _even"
+suff=""
 
 #Rois
 roi=("V3ab" "PPC" "APC" "V4" "LO" "PFS")
@@ -33,7 +33,7 @@ do
 	for sf in $suff
 	do
 
-		funcDir=$subjDir/fsl/$cond/HighLevel${sf}_smooth.gfeat
+		funcDir=$subjDir/fsl/$cond/HighLevel${sf}_roi.gfeat
 			
 
 		for r in 0 1 2 3 4

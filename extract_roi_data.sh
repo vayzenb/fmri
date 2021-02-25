@@ -20,12 +20,12 @@ do
     rm -rf $results_dir
     mkdir $results_dir
 
-    for sf_loc in $suf; do
-        for rr in 0 1; do
-            for lr in "l" "r"; do
-                roi_nifti=$subj_dir/rois/${lr}${roi[${rr}]}${sf_loc}.nii.gz
-                echo $roi_nifti
-
+    for sf_loc in $suf; do  #loop across run type for the masks
+        for rr in 0 1; do #loop across rois
+            for lr in "l" "r"; do #loop across left and right hemis
+                roi_nifti=$subj_dir/rois/${lr}${roi[${rr}]}${sf_loc}.nii.gz #set ROI
+                
+                #check if ROI exists
                 if test -f "$roi_nifti"; then
                     echo ${sf_loc}
 
