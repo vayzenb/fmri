@@ -2,14 +2,20 @@ import numpy as np
 import pandas as pd
 import subprocess
 import os
-import shutil
-import warnings
 
 
-'''
-Function to extract raw data from ROI and parameter estimate from each mask
-'''
-def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list,, stat_type):
+
+
+
+def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type):
+    """
+    Function to extract raw data from ROI and parameter estimate from each mask
+
+    As input, takes:
+    sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type
+
+    """
+    
     
     roi_nifti = f'{sub_dir}/rois/{roi}.nii.gz'
     
@@ -18,20 +24,26 @@ def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list,, stat_type
         for ec in range(0,len(cope_list)):
             cope_nifti = f"{sub_dir}/fsl/{exp}/HighLevel.gfeat/cope{cope_list[ec]}.feat/stats/{stat_type}.nii.gz"
             out = f'{results_dir}/{roi}_{cond_list[ec]}'
-            #extract_data(roi_nifti, cope_nifti, f'{results_dir}/{lr}{rois[rr]}{sf_loc}_localizer.nii.gz')
-
+            
+            
             bash_cmd  = f'fslmeants -i {cope_nifti} -m {roi_nifti} -o {out}.txt --showall --transpose'
             
             
             bash_out = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True)
             
-            return bash_out.stdout
+            print(bash_out.stdout)
+    return 
 
-'''
-function to calculate the distance between the peak voxel and every other voxel in the localizer data
-'''
+
 
 def calc_distance(loc_df):
+    """
+    function to calculate the distance between the peak voxel and every other voxel in the localizer data
+    
+    As input, takes:
+    a pandas dataframe
+    
+    """
     peak_vox = loc_df.iloc[0,0:3]
 
     all_coords = loc_df.iloc[:,0:3]
@@ -39,40 +51,50 @@ def calc_distance(loc_df):
     dist = all_coords[['x', 'y', 'z']].sub(np.array(peak_vox)).pow(2).sum(1).pow(0.5)
     return dist
 
-'''
-Function to load and organize experimental data by localizer voxel strength (function or distance)
-'''
 
-def organize_data(sub_dir,results_dir, roi, cond_list, sort_type):
+def organize_data(sub_dir,results_dir, roi, cond, sort_type):
+    
+    """
+    Function to load and organize experimental data by localizer voxel strength (function or distance)
+    
+    Takes:
+    sub_dir,results_dir, roi, cond, sort_type
+    """
 
     #define and read localzier files
     loc_file = f'{sub_dir}/rois/data/{roi}.txt'
 
     loc_df = pd.read_csv(loc_file, sep="  ", header=None, names = ["x", "y", "z", "loc"])
 
-    for cc in cond_list:
-        #define exp file
-        exp_file = f'{results_dir}/{roi}_{cc}.txt'
+    
+    #define exp file
+    exp_file = f'{results_dir}/{roi}_{cond}.txt'
 
-        #load each file
-        exp_df = pd.read_csv(exp_file, sep="  ", header=None, names = ["x", "y", "z", cc])
+    #load each file
+    exp_df = pd.read_csv(exp_file, sep="  ", header=None, names = ["x", "y", "z", cond])
 
-        #Append it to the localizer data
-        loc_df = loc_df.join(exp_df[cc])
+    #Append it to the localizer data
+    loc_df = loc_df.join(exp_df[cond])
 
 
     #sort file by localizer functional value (high to low)
     loc_df = loc_df.sort_values(by =['loc'], ascending=False)
     loc_df = loc_df.reset_index(drop = True)
     if sort_type == 'dist':
-        loc_df = calc_distance(loc_df)
+        loc_df['dist'] = calc_distance(loc_df)
 
         loc_df = loc_df.sort_values(by =['dist', 'loc'], ascending=[True, False])
         loc_df= loc_df.reset_index(drop=True)
 
+    loc_df = loc_df[["x", "y", "z", "loc", "dist", cond]]
     return loc_df
 
 def calc_haxby_mvpa(roi_dir, results_dir, roi, cond_list,split_list, sort_type):
+    """
+    Function to do Haxby stlye MVPA
+    """
+    
+    
     #define and read localzier files
     #Make sure this is an independant ROI
     loc_file = f'{results_dir}/{roi}.txt'

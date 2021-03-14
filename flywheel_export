@@ -1,3 +1,3 @@
 fw export bids [Project in Flywheel] [Destination folder] [optional flags]
 
-fw export bids -p "DocNet" /lab_data/behrmannlab/vlad/spaceloc/ --data-type func --data-type anat --subject spaceloc1002
+fw export bids -p "DocNet" /lab_data/behrmannlab/vlad/spaceloc/ --data-type func --data-type anat --subject spaceloc1005 spaceloc1006

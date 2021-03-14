@@ -7,13 +7,13 @@
 #
 
 
-subj_list="1002"
+subj_list="1005 1006"
 runs=("1" "2" "3" "4" "5" "6")
 ogSub="1001"
 exp="spaceloc"
 cond="spaceloc depthloc distloc toolloc"
 #cond="toolloc depthloc distloc"
-suf="_roi"
+suf=""
 #subj_list="1001 1002"
 #runs=("1" "2")
 
@@ -51,11 +51,11 @@ subjDir=$dataDir/sub-${exp}${sub}/ses-01/derivatives/fsl
 		cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
 
-	#cp ${ogRun}/HighLevel_odd_unsmoothed.fsf $runDir/HighLevel_odd_unsmoothed.fsf #copies fsf from run 1 into the other runs (cp = copy)
-	#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd_unsmoothed.fsf
+	cp ${ogRun}/HighLevel.fsf $runDir/HighLevel.fsf #copies fsf from run 1 into the other runs (cp = copy)
+	sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel.fsf
 
-	#cp ${ogRun}/HighLevel_even_unsmoothed.fsf $runDir/HighLevel_even_unsmoothed.fsf #copies fsf from run 1 into the other runs (cp = copy)
-	#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_even_unsmoothed.fsf
+	cp ${ogRun}/HighLevel_roi.fsf $runDir/HighLevel_roi.fsf #copies fsf from run 1 into the other runs (cp = copy)
+	sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi.fsf
 	#cp ${ogRun}/HighLevel_6Runs.fsf $runDir/HighLevel_6Runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
 	#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_6Runs.fsf
 

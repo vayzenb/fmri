@@ -5,10 +5,17 @@ import os
 
 
 
-'''
-Function to extract raw data from ROI and parameter estimate from each mask
-'''
+
+
 def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type):
+    """
+    Function to extract raw data from ROI and parameter estimate from each mask
+
+    As input, takes:
+    sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type
+
+    """
+    
     
     roi_nifti = f'{sub_dir}/rois/{roi}.nii.gz'
     
@@ -27,11 +34,16 @@ def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type)
             print(bash_out.stdout)
     return 
 
-'''
-function to calculate the distance between the peak voxel and every other voxel in the localizer data
-'''
+
 
 def calc_distance(loc_df):
+    """
+    function to calculate the distance between the peak voxel and every other voxel in the localizer data
+    
+    As input, takes:
+    a pandas dataframe
+    
+    """
     peak_vox = loc_df.iloc[0,0:3]
 
     all_coords = loc_df.iloc[:,0:3]
@@ -39,11 +51,15 @@ def calc_distance(loc_df):
     dist = all_coords[['x', 'y', 'z']].sub(np.array(peak_vox)).pow(2).sum(1).pow(0.5)
     return dist
 
-'''
-Function to load and organize experimental data by localizer voxel strength (function or distance)
-'''
 
 def organize_data(sub_dir,results_dir, roi, cond, sort_type):
+    
+    """
+    Function to load and organize experimental data by localizer voxel strength (function or distance)
+    
+    Takes:
+    sub_dir,results_dir, roi, cond, sort_type
+    """
 
     #define and read localzier files
     loc_file = f'{sub_dir}/rois/data/{roi}.txt'
@@ -74,6 +90,11 @@ def organize_data(sub_dir,results_dir, roi, cond, sort_type):
     return loc_df
 
 def calc_haxby_mvpa(roi_dir, results_dir, roi, cond_list,split_list, sort_type):
+    """
+    Function to do Haxby stlye MVPA
+    """
+    
+    
     #define and read localzier files
     #Make sure this is an independant ROI
     loc_file = f'{results_dir}/{roi}.txt'
