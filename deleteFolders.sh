@@ -1,9 +1,8 @@
 #!/bin/bash
 
-subj_list="docnet1001 docnet1002" #03 04 05 06 07 08 09 10 11 12 13 14 15 16"
+subj_list="spaceloc1005 spaceloc1006" #03 04 05 06 07 08 09 10 11 12 13 14 15 16"
 runs="1 2 3 4 5 6"
-exp="docnet"
-cond="spaceloc adaptation"
+exp="spaceloc"
 cond="spaceloc"
 
 
@@ -23,6 +22,7 @@ do
 		do
 			#echo $subjDir/${cc}/run-0${rr}/1stLevel.feat
 			rm -rf $subjDir/${cc}/run-0${rr}/1stLevel.feat
+			rm -rf $subjDir/${cc}/run-0${rr}/1stLevel_roi.feat
 		done
 	done
 done

@@ -1,9 +1,9 @@
 import subprocess
 import os
 
-subj_list=["spaceloc1001"]
+subj_list=["spaceloc1005", "spaceloc1006"]
 exp="spaceloc"
-cond=["spaceloc", "depthloc", "distloc", "tooloc"]
+cond=["spaceloc", "depthloc", "distloc", "toolloc"]
 loc_suf="_roi"
 
 #Rois
@@ -21,8 +21,8 @@ for ss in subj_list:
 
     os.makedirs(f'{roi_dir}/data', exist_ok=True)
 
-    for cc in cond:
-        func_dir = f'{sub_dir}/fsl/{cond}/HighLevel{loc_suf}.gfeat'
+    for cc_num, cc in enumerate(cond):
+        func_dir = f'{sub_dir}/fsl/{cc}/HighLevel{loc_suf}.gfeat'
 
         for rr in range(0,len(roi)):
             for lr in ["l", "r"]:
@@ -30,8 +30,8 @@ for ss in subj_list:
                 print(ss, lr, rr, cc)
 
                 #define ROI directory
-                roi_nifti = f'{roi_dir}/{lr}{roi[rr]}{loc_suf}.nii.gz'
-                cope_dir = f'{func_dir}/cope{cope_num[rr]}.feat'
+                roi_nifti = f'{roi_dir}/{lr}{roi[rr]}_{cc}.nii.gz'
+                cope_dir = f'{func_dir}/cope{cope_num[cc_num][rr]}.feat'
                 #print(cope_dir)
 
                 #Extract ROI by multiplying the cluster-correct mask by broad anatomical parcel
@@ -43,10 +43,10 @@ for ss in subj_list:
                 vox_num = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True) #this subprocess captures the output
 
                 if vox_num.stdout[0] == "0":
-                    os.remove(f'{roi_dir}/{lr}{roi[rr]}{sf}.nii.gz')
+                    os.remove(roi_nifti)
                     
                 else: #else save functional data from mask
-                    roi_data = f'{roi_dir}/data/{lr}{roi[rr]}{cc}'
+                    roi_data = f'{roi_dir}/data/{lr}{roi[rr]}_{cc}'
 
                     bash_cmd = f'fslmeants -i {cope_dir}/stats/zstat1.nii.gz -m {roi_nifti} -o {roi_data}.txt --showall --transpose'
                     subprocess.run(bash_cmd.split(), check=True)

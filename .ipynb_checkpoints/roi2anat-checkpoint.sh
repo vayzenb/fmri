@@ -4,12 +4,12 @@ module load fsl-6.0.3
 
 mniBrain=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/MNI152_T1_2mm_brain.nii.gz
 
-subj_list="spaceloc1001"
+subj_list="spaceloc1005 spaceloc1006"
 exp="spaceloc"
-#roi="V3ab V4 PPC APC"
-roi="LO PFS"
-#parcelType=mruczek_parcels/binary
-parcelType=julian_parcels
+roi="V3ab V4 PPC APC"
+#roi="LO PFS"
+parcelType=mruczek_parcels/binary
+#parcelType=julian_parcels
 
 parcelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}

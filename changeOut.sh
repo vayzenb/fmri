@@ -7,13 +7,13 @@
 #
 
 
-subj_list="1005 1006"
+subj_list="1002 1003 1004 1005 1006 1007"
 runs=("1" "2" "3" "4" "5" "6")
 ogSub="1001"
 exp="spaceloc"
 cond="spaceloc depthloc distloc toolloc"
 #cond="toolloc depthloc distloc"
-suf=""
+suf="_roi_2runs"
 #subj_list="1001 1002"
 #runs=("1" "2")
 
@@ -56,6 +56,12 @@ subjDir=$dataDir/sub-${exp}${sub}/ses-01/derivatives/fsl
 
 	cp ${ogRun}/HighLevel_roi.fsf $runDir/HighLevel_roi.fsf #copies fsf from run 1 into the other runs (cp = copy)
 	sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi.fsf
+
+	cp ${ogRun}/HighLevel_roi_2runs.fsf $runDir/HighLevel_roi_2runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
+	sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi_2runs.fsf
+
+	rm $runDir/HighLevel_roi_2run.fsf 
+	rm $runDir/HighLevel_roi_run.fsf 
 	#cp ${ogRun}/HighLevel_6Runs.fsf $runDir/HighLevel_6Runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
 	#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_6Runs.fsf
 
