@@ -1,0 +1,38 @@
+
+# uncomment and run the below commands for all contrasts of all subjects' dynLoc
+### open thresholded contrast image (tstat1.nii.gz in feat dir) with anat.mgz (in FS dir) as underlay ###
+
+###Description of copes#####
+cope1 = Scramble (greater than object)
+cope2 = Object (greater than scramble)
+cope3 = Shading (greater than flat)
+cope4 = fix
+
+#RUN ME FIRST
+export FREESURFER_HOME=/Applications/freesurfer
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+
+
+
+tkmedit DOC1009 orig/anat.mgz -overlay /Volumes/Zeus/DOC/DOC1009/DOTS_func/HighLevel.gfeat/cope3.feat/stats/zstat1.nii.gz -fthresh 3 -fmid 10 -fmax 15
+
+### instructions for using tkmedit:
+
+0. move your cursor over the voxels above threshold you want
+1. select contiguous voxels by threshold (under tools -- see 1.png)
+2. you save it as a label (2.png)
+3. you clear your select voxels and pick another region (3.png)
+
+++++++++++++++ IGNORE +++++++++++++++++++
+
+for example tkmedit calls i've attached a bash script i threw together last time i was doing this (view.sh).
+
+you've saved freesurfer "label" files.  to make them into a binary mask in volume space you use mri_label2vol (see attached script label2Mask.sh for example calls).
+
+also, i move my sig.nii.gz volumes for a given contrast into anatomical space with mri_vol2vol before starting this whole thing, but i don't think you have to do that -- you would just supply tkmedit with a registration file.
+
+++++++++++++++++++++++++++++++++++++++++++
+
+concert ROI to nifty and save in subject's folder:
+
+mri_label2vol --label /usr/local/freesurfer/subjects/ea1/label/rFFA.label --temp /usr/local/freesurfer/subjects/ea1/mri/orig/anat.mgz --identity --o ~/Desktop/dynStat_scene/ea1/ROI/rFFA.nii.gz
