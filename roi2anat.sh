@@ -5,16 +5,15 @@ module load fsl-6.0.3
 
 
 subj_list="pixar155"
-exp="ginn/ds000228/derivatives/"
+exp="ginn/preschool_fmri/derivatives/"
 roi="V3ab V4 PPC APC"
-roi="LO PFS FFA OFA"
+roi="LO PFS"
 #parcelType=mruczek_parcels/binary
 parcelType=julian_parcels
-mniBrain=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType/MNI152_T1_1mm_brain.nii.gz
+mniBrain=$FSLDIR/data/standard/MNI152_T1_1mm.nii.gz
 
 parcelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}
-
 
 for sub in $subj_list
 do
