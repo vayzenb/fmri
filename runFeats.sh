@@ -6,12 +6,12 @@
 # Created by VA on 2.23.20
 module load fsl-6.0.3
 
-subj_list="spaceloc1007"
+subj_list="spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012"
 runs="1 2 3 4 5 6"
 exp="spaceloc"
 cond="spaceloc"
-cond="depthloc toolloc distloc"
-suf="_roi_2runs"
+cond="spaceloc depthloc toolloc distloc"
+suf="_roi"
 
 
 dataDir=/lab_data/behrmannlab/vlad/${exp}
@@ -24,11 +24,11 @@ subjDir=$dataDir/sub-${sub}/ses-01/derivatives/fsl
     for cc in $cond
     do
         feat $subjDir/${cc}/run-01/1stLevel${suf}.fsf &
-        feat $subjDir/${cc}/run-02/1stLevel${suf}.fsf 
-        #feat $subjDir/${cc}/run-03/1stLevel${suf}.fsf 
-        #feat $subjDir/${cc}/run-04/1stLevel${suf}.fsf &
-        #feat $subjDir/${cc}/run-05/1stLevel${suf}.fsf 
-        #feat $subjDir/${cc}/run-06/1stLevel${suf}.fsf 
+        feat $subjDir/${cc}/run-02/1stLevel${suf}.fsf &
+        feat $subjDir/${cc}/run-03/1stLevel${suf}.fsf 
+        feat $subjDir/${cc}/run-04/1stLevel${suf}.fsf &
+        feat $subjDir/${cc}/run-05/1stLevel${suf}.fsf &
+        feat $subjDir/${cc}/run-06/1stLevel${suf}.fsf 
 
 
     done
