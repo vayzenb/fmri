@@ -5,42 +5,39 @@ from glob import glob
 #import pdb
 
 #set up folders and ROIS
-exp_dir= 'ginn/preschool_fmri/derivatives'
-study_dir = f'/lab_data/behrmannlab/vlad/{exp_dir}'
-roi_dir=f'{study_dir}/ROIs'
-subj_dir=f'{study_dir}/preprocessed_data'
-out_dir = f'{study_dir}/timeseries'
-ROIs=["LO", "PFS"]
 
-#func to pull each subject directory
-def load_files(dirName):
-    listOfFiles = list()
-    for (dirpath, dirnames, filenames) in os.walk(dirName):
-        listOfFiles += dirnames
-            
-    return listOfFiles 
+subj_list=["2003"]
+exp = "docnet"
+cond=["cattask"]
+suf=""
+rois = ["LO_toolloc", 'PFS_toolloc', 'PPC_spaceloc', 'APC_spaceloc']
+#rois = ["LO_toolloc"]
 
-#pull sub dirs
-subs = load_files(subj_dir)
+exp_dir=f"/lab_data/behrmannlab/vlad/{exp}"
 
 #loop through subs
-for ss in subs:
-    #gran  functional image in each sub dir
-    sub_file = glob(f'{subj_dir}/{ss}/*_swrf_bold.nii.gz')[0]
+for ss in subj_list:
+    #grab  functional image in each sub dir
+    sub_dir = f"{exp_dir}/sub-{exp}{ss}/ses-02/derivatives"
+    os.makedirs(f'{sub_dir}/results/timeseries', exist_ok=True)
+    out_dir= f'{sub_dir}/results/timeseries'
     
-    for rr in ROIs:
-        # create fsl command for left hemi ROI
-        bash_cmd = f'fslmeants -i {sub_file} -o {out_dir}/{ss}_l{rr}_timecourse.txt -m {roi_dir}/l{rr}.nii.gz'
-
-        #execute fsl command
-        bash_out = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True)
-
-        #same for right hemi ROI
-        bash_cmd = f'fslmeants -i {sub_file} -o {out_dir}/{ss}_r{rr}_timecourse.txt -m {roi_dir}/r{rr}.nii.gz'
-
-        #execute fsl command
-        bash_out = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True)
-           
-        
+    for cc in cond:
+        task_dir = f"{sub_dir}/fsl/{cc}"
+        runs = glob(f'{task_dir}/run-0*/')
+    
+        for rn, rr in enumerate(runs):
+            filtered_func = f'{rr}1stLevel{suf}.feat/filtered_func_data.nii.gz'
+            print(rr)
+            for roi in rois:
+                for lr in ["l", "r"]:
+                    
+                    roi_nifti = f'{rr}/1stLevel{suf}.feat/rois/{lr}{roi}_peak.nii.gz' #set roi
+                    print(roi_nifti)
+                    if os.path.exists(roi_nifti):
+                        bash_cmd = f'fslmeants -i {filtered_func} -o {out_dir}/{cc}_run-0{rn+1}_{lr}{roi}_timecourse.txt -m {roi_nifti}'
+                        subprocess.run(bash_cmd.split(), check=True)
+                        #bash_out = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True)
+                        
 
 

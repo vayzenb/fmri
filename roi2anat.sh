@@ -4,8 +4,8 @@ module load fsl-6.0.3
 
 
 
-subj_list="pixar155"
-exp="ginn/preschool_fmri/derivatives/"
+subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
+exp="spaceloc"
 roi="V3ab V4 PPC APC"
 roi="LO PFS"
 #parcelType=mruczek_parcels/binary
@@ -17,7 +17,7 @@ studyDir=/lab_data/behrmannlab/vlad/${exp}
 
 for sub in $subj_list
 do
-	subjDir=$studyDir/sub-${sub}/ses-01/derivatives
+	subjDir=$studyDir/sub-${exp}${sub}/ses-01/derivatives
 	#anat=$studyDir/sub-${sub}/ses-01/anat/sub-${sub}_ses-01_T1w_brain.nii.gz	
     anat=$studyDir/preprocessed_data/sub-${sub}/sub-${sub}_normed_anat.nii.gz
 	#mkdir $studyDir/rois

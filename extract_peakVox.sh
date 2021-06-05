@@ -5,7 +5,7 @@
 
 calc(){ awk "BEGIN { print "$*" }"; }
 
-subj_list="1007 1008 1009"
+subj_list="1001"
 
 roi="lLO rLO"
 

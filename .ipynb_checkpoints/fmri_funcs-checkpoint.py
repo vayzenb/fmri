@@ -22,8 +22,10 @@ def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type)
     if os.path.exists(roi_nifti):
            
         for ec in range(0,len(cope_list)):
+            
             cope_nifti = f"{sub_dir}/fsl/{exp}/HighLevel.gfeat/cope{cope_list[ec]}.feat/stats/{stat_type}.nii.gz"
             out = f'{results_dir}/{roi}_{cond_list[ec]}'
+           
             
             
             bash_cmd  = f'fslmeants -i {cope_nifti} -m {roi_nifti} -o {out}.txt --showall --transpose'

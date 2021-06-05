@@ -7,13 +7,13 @@
 #
 
 
-subj_list="1008 1009 1010 1011 1012"
-runs=("1" "2" "3" "4" "5" "6")
-ogSub="1001"
-exp="spaceloc"
-cond="spaceloc depthloc distloc toolloc"
+subj_list="2003"
+runs=("1" "2" "3" "4")
+ogSub="2003"
+exp="docnet"
+cond="catmvpa"
 #cond="toolloc"
-suf="_roi"
+suf=""
 #subj_list="1001 1002"
 #runs=("1" "2")
 
@@ -21,12 +21,11 @@ suf="_roi"
 dataDir=/lab_data/behrmannlab/vlad/${exp}
 
 ###############################
-ogDir=$dataDir/sub-${exp}${ogSub}/ses-01/derivatives/fsl
+ogDir=$dataDir/sub-${exp}${ogSub}/ses-02/derivatives/fsl
 for sub in $subj_list
 do
 	
-	subjDir=$dataDir/sub-${exp}${sub}/ses-01/derivatives/fsl
-
+	subjDir=$dataDir/sub-${exp}${sub}/ses-02/derivatives/fsl
 
 #cd $subjDir
 
@@ -52,14 +51,14 @@ do
 		#cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
 
-		cp ${ogRun}/HighLevel.fsf $runDir/HighLevel.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel.fsf
+		#cp ${ogRun}/HighLevel.fsf $runDir/HighLevel.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel.fsf
 
-		cp ${ogRun}/HighLevel_roi.fsf $runDir/HighLevel_roi.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi.fsf
+		#cp ${ogRun}/HighLevel_roi.fsf $runDir/HighLevel_roi.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi.fsf
 
-		cp ${ogRun}/HighLevel_roi_2runs.fsf $runDir/HighLevel_roi_2runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi_2runs.fsf
+		#cp ${ogRun}/HighLevel_roi_2runs.fsf $runDir/HighLevel_roi_2runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi_2runs.fsf
 
 	#rm $runDir/HighLevel_roi_2run.fsf 
 	#rm $runDir/HighLevel_roi_run.fsf 
