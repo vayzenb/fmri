@@ -4,7 +4,7 @@ from glob import glob
 import pdb
 
 
-subj_list=["2003"]
+subj_list=["2005"]
 exp = "docnet"
 cond=["cattask"]
 runs=[1, 2, 3, 4, 5, 6]

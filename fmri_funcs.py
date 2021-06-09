@@ -29,7 +29,7 @@ def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type)
             
             
             bash_cmd  = f'fslmeants -i {cope_nifti} -m {roi_nifti} -o {out}.txt --showall --transpose'
-            
+            print(bash_cmd)
             
             bash_out = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True)
             

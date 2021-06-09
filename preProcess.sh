@@ -8,7 +8,7 @@
 # export FREESURFER_HOME=/Applications/freesurfer
 # source $FREESURFER_HOME/SetUpFreeSurfer.sh
 module load fsl-6.0.3
-subj_list="docnet2003"
+subj_list="docnet2007 docnet2002"
 proj="docnet"
 #cond="spaceloc"
 cond="catmvpa"
@@ -23,7 +23,9 @@ expNum=(1 2 3 4 5 6)
 dataDir=/lab_data/behrmannlab/vlad/$proj/
 
 
+
 for sub in $subj_list; do
+        echo $sub
         #Make subject, anat, and func directories
         subj_dir=$dataDir/sub-${sub}/ses-02
         cd $subj_dir

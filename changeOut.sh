@@ -7,11 +7,11 @@
 #
 
 
-subj_list="2003"
-runs=("1" "2" "3" "4")
-ogSub="2003"
+subj_list="2005 2002 2007"
+runs=("1" "2" "3" "4" "5" "6")
+ogSub="2005"
 exp="docnet"
-cond="catmvpa"
+cond="kornet"
 #cond="toolloc"
 suf=""
 #subj_list="1001 1002"

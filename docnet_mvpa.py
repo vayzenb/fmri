@@ -36,7 +36,7 @@ for ss in subj_list:
     os.makedirs(raw_dir, exist_ok = True) 
     for lr in ['l','r']: #set left and right    
         for rr in rois:
-            fmri_funcs.extract_data(sub_dir, raw_dir, f'{lr}{roi}', exp_cond, exp_cope)
+            fmri_funcs.extract_data(sub_dir, raw_dir, f'{lr}{rr}', exp_cond, exp_cope)
 
 
 
