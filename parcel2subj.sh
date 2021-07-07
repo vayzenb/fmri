@@ -4,15 +4,14 @@ module load fsl-6.0.3
 
 
 
-subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
-subj_list="1007"
+subj_list="1001 1008 1012"
 exp="spaceloc"
-roi="V3ab V4 PPC APC"
-#roi="LO PFS"
-parcelType=mruczek_parcels/binary
-#parcelType=julian_parcels
+#roi="V3ab V4 PPC APC"
+roi="LO PFS"
+#parcelType=mruczek_parcels/binary
+parcelType=julian_parcels
 mniBrain=$FSLDIR/data/standard/MNI152_T1_1mm.nii.gz #this is the parcel for both julian and mruczek
-anat=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz
+anat=$FSLDIR/data/standard/MNI152_T1_1mm.nii.gz
 
 parcelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}
@@ -22,7 +21,7 @@ do
 	subjDir=$studyDir/sub-${exp}${sub}/ses-01/derivatives
 	#anat=$studyDir/sub-${exp}${sub}/ses-01/anat/sub-${exp}${sub}_ses-01_T1w_brain.nii.gz	
     #anat=$studyDir/preprocessed_data/sub-${sub}/sub-${sub}_normed_anat.nii.gz
-	mkdir $studyDir/rois
+	mkdir $subjDir/rois
 	mkdir $subjDir/rois/parcels
 	roiDir=$subjDir/rois/parcels
 	

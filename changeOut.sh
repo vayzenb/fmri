@@ -7,11 +7,11 @@
 #
 
 
-subj_list="2008 2012"
+subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
-ogSub="2001"
-exp="docnet"
-cond="catmvpa"
+ogSub="1001"
+exp="spaceloc"
+cond="spaceloc depthloc distloc toolloc"
 #cond="toolloc"
 suf=""
 #subj_list="1001 1002"
@@ -21,11 +21,11 @@ suf=""
 dataDir=/lab_data/behrmannlab/vlad/${exp}
 
 ###############################
-ogDir=$dataDir/sub-${exp}${ogSub}/ses-02/derivatives/fsl
+ogDir=$dataDir/sub-${exp}${ogSub}/ses-01/derivatives/fsl
 for sub in $subj_list
 do
 	
-	subjDir=$dataDir/sub-${exp}${sub}/ses-02/derivatives/fsl
+	subjDir=$dataDir/sub-${exp}${sub}/ses-01/derivatives/fsl
 
 #cd $subjDir
 
@@ -33,12 +33,12 @@ do
 		runDir=$subjDir/${cc}
 		ogRun=$ogDir/${cc}
 
-		echo $runDir
-		echo $ogDir
+		
+		echo ${ogRun}/run-01/1stLevel${suf}.fsf
 		for r in "${runs[@]}";
 		do
 
-			echo ${ogRun}/run-01/1stLevel${suf}.fsf
+			
 			cp ${ogRun}/run-01/1stLevel${suf}.fsf $runDir/run-0${r}/1stLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
 
 			sed -i "s/${ogSub}/${sub}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change subject
@@ -48,14 +48,14 @@ do
 
 		done
 
-		cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
+		#cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
 
-		cp ${ogRun}/HighLevel_odd.fsf $runDir/HighLevel_odd.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd.fsf
+		#cp ${ogRun}/HighLevel_odd.fsf $runDir/HighLevel_odd.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd.fsf
 
-		cp ${ogRun}/HighLevel_even.fsf $runDir/HighLevel_even.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_even.fsf
+		#cp ${ogRun}/HighLevel_even.fsf $runDir/HighLevel_even.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_even.fsf
 
 		#cp ${ogRun}/HighLevel_roi_2runs.fsf $runDir/HighLevel_roi_2runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi_2runs.fsf

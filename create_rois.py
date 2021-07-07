@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-subj_list=["spaceloc1007"]
+subj_list=["spaceloc1008", "spaceloc1012"]
 exp="spaceloc"
 cond=["spaceloc", "depthloc", "distloc", "toolloc"]
 loc_suf="_roi"
