@@ -12,8 +12,8 @@ runs=("1" "2" "3" "4" "5" "6" "7" "8")
 ogSub="1001"
 exp="spaceloc"
 cond="spaceloc depthloc distloc toolloc"
-#cond="toolloc"
-suf=""
+cond="spaceloc"
+suf="_roi_2runs"
 #subj_list="1001 1002"
 #runs=("1" "2")
 
@@ -48,8 +48,8 @@ do
 
 		done
 
-		#cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
+		cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
 
 		#cp ${ogRun}/HighLevel_odd.fsf $runDir/HighLevel_odd.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd.fsf
