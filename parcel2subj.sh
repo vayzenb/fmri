@@ -5,12 +5,13 @@ module load fsl-6.0.3
 
 
 subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
+subj_list=""
 exp="spaceloc"
 roi="V3ab V4 PPC APC"
 roi="LO1 LO2 LO"
 parcelType=mruczek_parcels/LabledROIs
 #parcelType=julian_parcels
-mniBrain=$FSLDIR/data/standard/MNI152_T1_1mm.nii.gz #this is the parcel for both julian and mruczek
+mniBrain=$FSLDIR/data/standard/MNI152_T1_1mm_brain.nii.gz #this is the parcel for both julian and mruczek
 anat=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz #all subs were registered to a 2mm brain
 
 parcelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
@@ -31,13 +32,9 @@ do
 	
 	for rr in $roi
 	do
-
 		#Register binary files to anatomical
 		flirt -in $parcelDir/l${rr}.nii.gz -ref $anat -out $roiDir/l${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear
-		flirt -in $parcelDir/r${rr}.nii.gz -ref $anat -out $roiDir/r${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear
-
-		flirt -in $parcelDir/l${rr}.nii.gz -ref $anat -out $roiDir/l${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear
-		flirt -in $parcelDir/r${rr}.nii.gz -ref $anat -out $roiDir/r${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear
+		flirt -in $parcelDir/r${rr}.nii.gz -ref $anat -out $roiDir/r${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear	
 	done
 
 done
