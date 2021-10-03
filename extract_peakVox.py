@@ -5,17 +5,25 @@ import pdb
 
 #percentage thresh
 per = 90
+num_vox = 100
 
-subj_list=["spaceloc1001", "spaceloc1002","spaceloc1003", "spaceloc1004", "spaceloc1005", "spaceloc1006","spaceloc1007" ]
+subj_list=["spaceloc1001", "spaceloc1002", "spaceloc1003", "spaceloc1004", "spaceloc1005", "spaceloc1006", "spaceloc1007",
+"spaceloc1008" ,"spaceloc1009", "spaceloc1010", "spaceloc1011" ,"spaceloc1012" ]
+
+
 exp="spaceloc"
 cond=["spaceloc", "depthloc", "distloc", "toolloc"]
+cond=["toolloc"]
 loc_suf="_roi"
 
 #Rois
-roi=["V3ab", "PPC", "APC", "V4", "LO", "PFS"]
+roi=["PPC", "APC"]
+roi=["LO", "PFS"]
 
 #Specify copes (contrasts) of interest
 cope_num=[[1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1,1,1,5,5,5]]
+cope_num=[[1, 1], [1, 1], [1, 1], [1,1]]
+cope_num=[[5, 5]]
 
 exp_dir=f"/lab_data/behrmannlab/vlad/{exp}"
 
@@ -44,7 +52,7 @@ for ss in subj_list:
                     bash_cmd = f'fslmaths {cope_dir}/stats/zstat1.nii.gz -mul {roi_nifti}.nii.gz {roi_nifti}_peak.nii.gz'
                     subprocess.run(bash_cmd.split(), check=True)
 
-                    bash_cmd = f'fslmaths {roi_nifti}_peak.nii.gz -thrp {per} -bin {roi_nifti}_peak.nii.gz'
+                    bash_cmd = f'fslmaths {roi_nifti}_peak.nii.gz -thrP {per} -bin {roi_nifti}_peak.nii.gz'
                     subprocess.run(bash_cmd.split(), check=True)
                     
 

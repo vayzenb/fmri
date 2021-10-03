@@ -7,13 +7,13 @@
 #
 
 
-subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
+subj_list="2004"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
-ogSub="1001"
-exp="spaceloc"
+ogSub="2001"
+exp="docnet"
 cond="spaceloc depthloc distloc toolloc"
-cond="spaceloc"
-suf="_roi_2runs"
+cond="catmvpa"
+suf=""
 #subj_list="1001 1002"
 #runs=("1" "2")
 
@@ -21,11 +21,11 @@ suf="_roi_2runs"
 dataDir=/lab_data/behrmannlab/vlad/${exp}
 
 ###############################
-ogDir=$dataDir/sub-${exp}${ogSub}/ses-01/derivatives/fsl
+ogDir=$dataDir/sub-${exp}${ogSub}/ses-02/derivatives/fsl
 for sub in $subj_list
 do
 	
-	subjDir=$dataDir/sub-${exp}${sub}/ses-01/derivatives/fsl
+	subjDir=$dataDir/sub-${exp}${sub}/ses-02/derivatives/fsl
 
 #cd $subjDir
 
@@ -51,11 +51,11 @@ do
 		cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
 
-		#cp ${ogRun}/HighLevel_odd.fsf $runDir/HighLevel_odd.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd.fsf
+		cp ${ogRun}/HighLevel_odd.fsf $runDir/HighLevel_odd.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd.fsf
 
-		#cp ${ogRun}/HighLevel_even.fsf $runDir/HighLevel_even.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_even.fsf
+		cp ${ogRun}/HighLevel_even.fsf $runDir/HighLevel_even.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_even.fsf
 
 		#cp ${ogRun}/HighLevel_roi_2runs.fsf $runDir/HighLevel_roi_2runs.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_roi_2runs.fsf

@@ -9,13 +9,15 @@ mem = 8
 run_time = "1-00:00:00"
 
 runs=list(range(1,4))
-subj_list = list(range(2002,2020))
+subj_list = list(range(2000,2020))
 exp="ma_mri"
 #cond="catmvpa"
 cond=["FBOSS_func"]
 study_dir= f'/lab_data/behrmannlab/vlad/{exp}'
 loc_suf ='_object'
 #the sbatch setup info
+run_1stlevel = False
+run_highlevel =True
 
 
 def setup_sbatch(suf):
@@ -55,16 +57,32 @@ for ss in subj_list:
 
     for cc_num, cc in enumerate(cond):
         func_dir = f'{sub_dir}/{cc}'
-        for rr in runs:
-            job_cmd = f'feat {func_dir}/Run0{rr}/1stLevel{loc_suf}.fsf'
-            suf = f'{ss}_{rr}'
+
+        if run_1stlevel == True:
+            for rr in runs:
+                job_cmd = f'feat {func_dir}/Run0{rr}/1stLevel{loc_suf}.fsf'
+                suf = f'{ss}_{rr}'
+                f = open(f"{job_name}.sh", "a")
+                f.writelines(setup_sbatch(suf))
+                f.writelines(job_cmd)
+                f.close()
+
+                
+                #pdb.set_trace()
+                subprocess.run(['sbatch', f"{job_name}.sh"],check=True, capture_output=True, text=True)
+                
+                os.remove(f"{job_name}.sh")
+
+        if run_highlevel == True:
+            job_cmd = f'feat {func_dir}/HighLevel{loc_suf}.fsf'
+            suf = f'{ss}'
             f = open(f"{job_name}.sh", "a")
             f.writelines(setup_sbatch(suf))
             f.writelines(job_cmd)
             f.close()
 
             
-            #pdb.set_trace()
+            
             subprocess.run(['sbatch', f"{job_name}.sh"],check=True, capture_output=True, text=True)
             
             os.remove(f"{job_name}.sh")
