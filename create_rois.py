@@ -3,6 +3,7 @@ import os
 
 subj_list=["spaceloc1001","spaceloc1002","spaceloc1003","spaceloc1004","spaceloc1005", "spaceloc1006",
 "spaceloc1007","spaceloc1008","spaceloc1009","spaceloc1010", "spaceloc1011","spaceloc1012"]
+subj_list=["spaceloc2013","spaceloc2014","spaceloc2015","spaceloc2016"]
 #subj_list = list(range(2000,2020))
 
 exp="spaceloc"

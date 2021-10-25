@@ -8,16 +8,18 @@
 # export FREESURFER_HOME=/Applications/freesurfer
 # source $FREESURFER_HOME/SetUpFreeSurfer.sh
 module load fsl-6.0.3
-subj_list="docnet2004"
+subj_list="docnet2002 docnet2007"
+#subj_list="docnet2013 docnet2014 docnet2015 docnet2016"
+proj="spaceloc"
 proj="docnet"
-#cond="spaceloc"
+#cond="spaceloc depthloc distloc toolloc"
 cond="catmvpa"
 #MRI acquisition number
 epi_list_exp=(5 6 8 9 11 12 14 15)
 epi_list_loc=(7 10 13 16)
 #MRI run number
 expNum=(1 2 3 4 5 6 7 8)
-#expNum=(7 8)
+expNum=(7 8)
 
 # main directory where setup files are stored
 dataDir=/lab_data/behrmannlab/vlad/$proj/
