@@ -1,2 +1,2 @@
-# flywheel
-scripts for downloading data from flywheel in BIDS format
+# FMRI
+Assorted analysis and preprocessing scripts for fMRI data
