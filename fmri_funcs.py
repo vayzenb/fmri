@@ -2,12 +2,16 @@ import numpy as np
 import pandas as pd
 import subprocess
 import os
+import pdb
 
 
+"""
+assorted useful functions for analyzing fmri dataset
+most functions use FSL commands 
+"""
 
 
-
-def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type):
+def extract_data(sub_dir, out_dir, roi, exp,cond_list, cope_list, suf='',stat_type='zstat1'):
     """
     Function to extract raw data from ROI and parameter estimate from each mask
 
@@ -23,17 +27,18 @@ def extract_data(sub_dir, results_dir, roi, exp,cond_list, cope_list, stat_type)
            
         for ec in range(0,len(cope_list)):
             
-            cope_nifti = f"{sub_dir}/fsl/{exp}/HighLevel.gfeat/cope{cope_list[ec]}.feat/stats/{stat_type}.nii.gz"
-            out = f'{results_dir}/{roi}_{cond_list[ec]}'
+            cope_nifti = f"{sub_dir}/fsl/{exp}/HighLevel{suf}.gfeat/cope{cope_list[ec]}.feat/stats/{stat_type}.nii.gz"
+            out = f'{out_dir}/{roi}_{cond_list[ec]}{suf}'
            
             
             
             bash_cmd  = f'fslmeants -i {cope_nifti} -m {roi_nifti} -o {out}.txt --showall --transpose'
             print(bash_cmd)
+            #pdb.set_trace()
             
-            bash_out = subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True)
+            subprocess.run(bash_cmd.split(),check=True, capture_output=True, text=True)
             
-            print(bash_out.stdout)
+            #print(bash_out.stdout)
     return 
 
 

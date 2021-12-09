@@ -5,9 +5,10 @@ module load fsl-6.0.3
 
 subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
 subj_list="2001 2002 2003 2004 2005 2007 2008 2012 2013 2014 2015 2016"
-#subj_list="1002"
+subj_list="2016"
 
 run="1 2 3 4 5 6 7 8"
+#run="7 8"
 exp=docnet
 #cond="spaceloc toolloc distloc depthloc"
 #cond="FBOSS_func"
