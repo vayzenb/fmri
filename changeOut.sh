@@ -7,15 +7,16 @@
 #
 
 
-subj_list="1001"
+subj_list="1004"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
 runs=("1" "2" "3")
 ogSub="1001"
 exp="hemispace"
-#exp="spaceloc"
-#cond="spaceloc depthloc distloc toolloc"
-cond="spaceloc toolloc"
-suf="_roi"
+#exp="docnet"
+cond="spaceloc depthloc distloc toolloc"
+cond="loc spaceloc toolloc"
+suf="_roi_stand"
+sesh="01"
 #subj_list="1001 1002"
 #runs=("1" "2")
 
@@ -23,11 +24,11 @@ suf="_roi"
 dataDir=/lab_data/behrmannlab/vlad/${exp}
 
 ###############################
-ogDir=$dataDir/sub-${exp}${ogSub}/ses-01/derivatives/fsl
+ogDir=$dataDir/sub-${exp}${ogSub}/ses-${sesh}/derivatives/fsl
 for sub in $subj_list
 do
 	
-	subjDir=$dataDir/sub-${exp}${sub}/ses-01/derivatives/fsl
+	subjDir=$dataDir/sub-${exp}${sub}/ses-${sesh}/derivatives/fsl
 
 #cd $subjDir
 
@@ -47,11 +48,12 @@ do
 			sed -i "s/run-01/run-0${r}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change run for file and output
 			sed -i "s/run1/run${r}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change run for file and output
 			sed -i "s/Run1/Run${r}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change run for covs
+			continue
 
 		done
 
-		#cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
+		cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
 
 		#cp ${ogRun}/HighLevel_odd.fsf $runDir/HighLevel_odd.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd.fsf
@@ -71,4 +73,4 @@ do
 	done
 done
 
-echo 'Dunzo!!!'
+echo "Dunzo!!!"

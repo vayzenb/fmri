@@ -14,17 +14,17 @@ subj_list=["spaceloc2013", "spaceloc2014", "spaceloc2015", "spaceloc2016"]
 
 exp="spaceloc"
 cond=["spaceloc", "depthloc", "distloc", "toolloc"]
-#cond=["toolloc"]
+cond=["toolloc"]
 loc_suf="_roi"
 
 #Rois
 roi=["PPC", "APC"]
-#roi=["LO", "PFS"]
+roi=["LO", "PFS"]
 
 #Specify copes (contrasts) of interest
 cope_num=[[1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1,1,1,5,5,5]]
 cope_num=[[1, 1], [1, 1], [1, 1], [1,1]]
-#cope_num=[[5, 5]]
+cope_num=[[5, 5]]
 
 exp_dir=f"/lab_data/behrmannlab/vlad/{exp}"
 
@@ -44,6 +44,7 @@ for ss in subj_list:
                 
                 
                 roi_nifti = f'{roi_dir}/{lr}{roi[rr]}_{cc}' #set roi
+                #pdb.set_trace()
                 cope_dir = f'{func_dir}/cope{cope_num[cc_num][rr]}.feat' #set cope
 
                 if os.path.exists(roi_nifti + ".nii.gz"):

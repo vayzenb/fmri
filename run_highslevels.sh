@@ -6,12 +6,12 @@
 # Created by VA on 2.23.20
 module load fsl-6.0.3
 
-subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006 spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012" 
+subj_list="hemispace1001 hemispace1002 hemispace1003 hemispace2001 hemispace2002 hemispace2003" 
 runs="1 2 3 4 5 6"
-exp="spaceloc"
+exp="hemispace"
 
-cond="spaceloc"
-suf="_roi_2runs"
+cond="loc toolloc spaceloc"
+suf="_roi_stand"
 
 
 dataDir=/lab_data/behrmannlab/vlad/${exp}
@@ -20,16 +20,16 @@ do
 
     feat $dataDir/sub-${exp}1001/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
     feat $dataDir/sub-${exp}1002/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1003/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1004/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf 
-    feat $dataDir/sub-${exp}1005/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1006/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1007/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1008/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf 
-    feat $dataDir/sub-${exp}1009/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1010/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1011/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
-    feat $dataDir/sub-${exp}1012/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf
+    feat $dataDir/sub-${exp}1003/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf 
+    feat $dataDir/sub-${exp}2001/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
+    feat $dataDir/sub-${exp}2002/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
+    feat $dataDir/sub-${exp}2003/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf 
+    #feat $dataDir/sub-${exp}1007/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
+    #feat $dataDir/sub-${exp}1008/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf 
+    #feat $dataDir/sub-${exp}1009/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
+    #feat $dataDir/sub-${exp}1010/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
+    #feat $dataDir/sub-${exp}1011/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf &
+    #feat $dataDir/sub-${exp}1012/ses-01/derivatives/fsl/${cc}/HighLevel${suf}.fsf
 
 done
 

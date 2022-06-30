@@ -5,13 +5,13 @@ module load fsl-6.0.3
 
 
 subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
-subj_list="2013 2014 2015 2016"
+subj_list="2017 2018"
 
 exp="spaceloc"
-roi="V3ab V4 PPC APC"
-#roi="LO PFS"
-parcelType=mruczek_parcels/binary
-#parcelType=julian_parcels
+roi="PPC APC"
+roi="LO PFS"
+#parcelType=mruczek_parcels/binary
+parcelType=julian_parcels
 mniBrain=$FSLDIR/data/standard/MNI152_T1_1mm_brain.nii.gz #this is the parcel for both julian and mruczek
 anat=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz #all subs were registered to a 2mm brain
 
