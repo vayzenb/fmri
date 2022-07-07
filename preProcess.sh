@@ -22,7 +22,7 @@ sesh="1"
 
 
 # main directory where setup files are stored
-dataDir=/lab_data/behrmannlab/vlad/$proj/
+dataDir=/lab_data/behrmannlab/vlad/$proj
 
 
 

@@ -13,12 +13,12 @@ subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spac
 subj_list="hemispace1004" 
 runs="1 2 3"
 exp="hemispace"
-cond="loc spaceloc toolloc"
+cond="loc toolloc"
 
 #cond="FBOSS_func"
 #cond="spaceloc depthloc toolloc distloc"
 #cond="spaceloc depthloc toolloc distloc"
-suf="_roi_stand"
+suf="_roi"
 sesh="01"
 
 

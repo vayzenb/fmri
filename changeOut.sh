@@ -10,12 +10,12 @@
 subj_list="1004"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
 runs=("1" "2" "3")
-ogSub="1001"
+ogSub="1002"
 exp="hemispace"
 #exp="docnet"
 cond="spaceloc depthloc distloc toolloc"
-cond="loc spaceloc toolloc"
-suf="_roi_stand"
+cond="toolloc loc spaceloc"
+suf="_roi"
 sesh="01"
 #subj_list="1001 1002"
 #runs=("1" "2")
