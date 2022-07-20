@@ -7,14 +7,14 @@
 #
 
 
-subj_list="1004"
+subj_list="1005 1006 1007"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
 runs=("1" "2" "3")
 ogSub="1002"
 exp="hemispace"
 #exp="docnet"
 cond="spaceloc depthloc distloc toolloc"
-cond="toolloc loc spaceloc"
+cond="toolloc spaceloc loc"
 suf="_roi"
 sesh="01"
 #subj_list="1001 1002"

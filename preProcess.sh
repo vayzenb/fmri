@@ -9,10 +9,11 @@
 # source $FREESURFER_HOME/SetUpFreeSurfer.sh
 module load fsl-6.0.3
 subj_list="docnet2017 docnet2018"
-subj_list="hemispace1004"
+subj_list="hemispace1007"
 proj="hemispace"
 cond="spaceloc depthloc distloc toolloc"
-cond="loc toolloc spaceloc"
+cond="toolloc spaceloc loc"
+
 #MRI acquisition number
 epi_list_exp=(5 6 8 9 11 12 14 15)
 epi_list_loc=(7 10 13 16)

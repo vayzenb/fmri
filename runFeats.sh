@@ -10,10 +10,10 @@ subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spac
 
 
 
-subj_list="hemispace1004" 
+subj_list="hemispace1007" 
 runs="1 2 3"
 exp="hemispace"
-cond="loc toolloc"
+cond="spaceloc toolloc loc"
 
 #cond="FBOSS_func"
 #cond="spaceloc depthloc toolloc distloc"

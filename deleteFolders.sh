@@ -1,11 +1,11 @@
 #!/bin/bash
 
 subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006 spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012" 
-subj_list="hemispace1004" 
+subj_list="hemispace1007" 
 #subj_list="MAMRI2000 MAMRI2001 MAMRI2002 MAMRI2003 MAMRI2004 MAMRI2005 MAMRI2006 MAMRI2007 MAMRI2008 MAMRI2009 MAMRI2010 MAMRI2011 MAMRI2012 MAMRI2013 MAMRI2014 MAMRI2015 MAMRI2016 MAMRI2017 MAMRI2018 MAMRI2019"
 runs="1 2 3"
 exp="hemispace"
-cond="loc"
+cond="loc spaceloc toolloc"
 #cond="FBOSS_func"
 
 
