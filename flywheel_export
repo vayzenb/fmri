@@ -1,3 +1,17 @@
 fw export bids [Project in Flywheel] [Destination folder] [optional flags]
 
-fw export bids -p "DocNet" /lab_data/behrmannlab/vlad/spaceloc/ --data-type func --data-type anat --subject spaceloc1005 spaceloc1006
+fw export bids -p "DocNet" /lab_data/behrmannlab/vlad/hemispace/ --data-type func --subject 220124165843 --subject 220125125708 --subject 220128144224
+
+fw export bids -p "Hemispherectomy-64ch" /lab_data/behrmannlab/vlad/hemispace/ --data-type func --subject  
+220712113750
+
+fw export bids -p "DocNet" /lab_data/behrmannlab/vlad/hemispace/ --data-type func --data-type anat --subject hemispace1006 
+
+fw export bids -p "Hemispherectomy-64ch" /lab_data/behrmannlab/vlad/hemispace/ --data-type func --data-type anat --subject 220628090129
+
+fw export bids -p "DocNet" /lab_data/behrmannlab/vlad/spaceloc/ --data-type func --data-type anat --subject docnet2018
+
+ --subject spaceloc1009 --subject spaceloc1010 --subject spaceloc1011  spaceloc1012 
+
+#if downloading without bids
+fw download mbehrmannlab/DocNet/docnet2004 -i nifti
