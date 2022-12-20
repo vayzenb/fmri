@@ -1,0 +1,7 @@
+grep: /lab_data/behrmannlab/vlad/spaceloc/spaceloc1001/ses-01/derivatives/fsl/toolloc/run-02/1stLevel.fsf: No such file or directory
+    while executing
+"exec sh -c "grep -a 'fmri(inmelodic)' $filename | tail -n 1 | awk '{ print \$3 }'" "
+    (procedure "feat5:load" line 5)
+    invoked from within
+"feat5:load -1 1 ${fsfroot}.fsf"
+    (file "/opt/fsl/6.0.3/bin/feat" line 309)
