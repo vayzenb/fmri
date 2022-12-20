@@ -8,11 +8,12 @@
 # export FREESURFER_HOME=/Applications/freesurfer
 # source $FREESURFER_HOME/SetUpFreeSurfer.sh
 module load fsl-6.0.3
-subj_list="docnet2017 docnet2018"
-subj_list="hemispace1007"
+
+subj_list="103 104 105 106 107"
+subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006 spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010"
 proj="hemispace"
 cond="spaceloc depthloc distloc toolloc"
-cond="toolloc spaceloc loc"
+cond="toolloc spaceloc"
 
 #MRI acquisition number
 epi_list_exp=(5 6 8 9 11 12 14 15)
