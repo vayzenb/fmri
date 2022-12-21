@@ -13,8 +13,8 @@ pause_time = 15
 
 runs=list(range(1,4))
 exp = 'spaceloc'
-sub_list = list(range(1006,1013)) + list(range(2013,2019))
-sub_list = [1001]
+sub_list = list(range(1002,1013)) + list(range(2013,2019))
+
 sub_list = [f'spaceloc{sub}' for sub in sub_list]
 
 tasks = ['spaceloc','toolloc']
@@ -30,8 +30,8 @@ cond=["FBOSS_func"]
 loc_suf ='_object'
 '''
 #the sbatch setup info
-run_1stlevel = True
-run_highlevel =False
+run_1stlevel = False
+run_highlevel =True
 
 preprocess = False
 
@@ -100,6 +100,16 @@ for sub in sub_list:
 
                 create_job(job_name, job_cmd)
                 n += 1
+
+    if run_highlevel == True:
+        for task in tasks:
+            task_dir = f'{sub_dir}/derivatives/fsl/{task}'
+        
+            job_name = f'{sub}_{task}_high'
+            job_cmd = f'feat {task_dir}/HighLevel{suf}.fsf'
+
+            create_job(job_name, job_cmd)
+            n += 1
 
 
 

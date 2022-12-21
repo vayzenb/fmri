@@ -10,12 +10,12 @@
 subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012 2013 2014 2015 2016 2017 2018"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
 runs=("1" "2" "3")
-ogSub="1001"
+ogSub="1002"
 exp="spaceloc"
 #exp="docnet"
 cond="spaceloc depthloc distloc toolloc"
 cond="toolloc spaceloc"
-suf=""
+suf="_all"
 sesh="01"
 #subj_list="1001 1002"
 #runs=("1" "2")
@@ -52,8 +52,8 @@ do
 
 		done
 
-		#cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
-		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
+		cp ${ogRun}/HighLevel${suf}.fsf $runDir/HighLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
+		sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel${suf}.fsf
 
 		#cp ${ogRun}/HighLevel_odd.fsf $runDir/HighLevel_odd.fsf #copies fsf from run 1 into the other runs (cp = copy)
 		#sed -i "s/${ogSub}/${sub}/g" $runDir/HighLevel_odd.fsf
