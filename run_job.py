@@ -12,23 +12,26 @@ pause_crit = 10
 pause_time = 15
 
 runs=list(range(1,4))
-exp = 'spaceloc'
-sub_list = list(range(1002,1013)) + list(range(2013,2019))
+exp = 'hemispace'
+#sub_list = list(range(1002,1013)) + list(range(2013,2019))
+#sub_list = [f'spaceloc{sub}' for sub in sub_list]
+tasks = ['spaceloc','toolloc', 'loc']
 
-sub_list = [f'spaceloc{sub}' for sub in sub_list]
+#sub_list = [25,38,57,59,64,67,68,71,83,84,85,87,88]
+#sub_list = [f'0{sub}' if sub < 100 else f'{sub}' for sub in sub_list]
+sub_list=["025", "038", "057", "059", "064", "067", "068", "071", "083", "084", "085", 
+"087", "088", "093", "094", "095", "096", "097", "103", "104", "105", "106", "107", 
+"hemispace1001", "hemispace1002", "hemispace1003","hemispace1004", "hemispace1006", "hemispace1007",
+ "hemispace2001", "hemispace2002", "hemispace2003"]
 
-tasks = ['spaceloc','toolloc']
+sub_list=["108", "109"]
+
+
+
 study_dir= f'/lab_data/behrmannlab/vlad/{exp}'
 ses = 1
 suf = ''
-#sub_list = list(range(103,108))
-'''
-exp="ma_mri"
-#cond="catmvpa"
-cond=["FBOSS_func"]
 
-loc_suf ='_object'
-'''
 #the sbatch setup info
 run_1stlevel = False
 run_highlevel =True
@@ -98,8 +101,11 @@ for sub in sub_list:
                 job_name = f'{sub}_{task}_{run}'
                 job_cmd = f'feat {task_dir}/run-0{run}/1stLevel{suf}.fsf'
 
-                create_job(job_name, job_cmd)
-                n += 1
+                #check if the feat file exists
+                if os.path.exists(f'{task_dir}/run-0{run}/1stLevel{suf}.fsf'):
+
+                    create_job(job_name, job_cmd)
+                    n += 1
 
     if run_highlevel == True:
         for task in tasks:
@@ -108,8 +114,11 @@ for sub in sub_list:
             job_name = f'{sub}_{task}_high'
             job_cmd = f'feat {task_dir}/HighLevel{suf}.fsf'
 
-            create_job(job_name, job_cmd)
-            n += 1
+            #check if the feat file exists
+            if os.path.exists(f'{task_dir}/HighLevel{suf}.fsf'):
+
+                create_job(job_name, job_cmd)
+                n += 1
 
 
 
@@ -118,49 +127,6 @@ for sub in sub_list:
         time.sleep(pause_time*60)
         n = 0
             
-
-
-
-'''
-#run first and highlevels
-for ss in subj_list:
-    sub_dir = f"{study_dir}/MAMRI{ss}"
-    
-
-    for cc_num, cc in enumerate(cond):
-        func_dir = f'{sub_dir}/{cc}'
-
-        if run_1stlevel == True:
-            for rr in runs:
-                job_cmd = f'feat {func_dir}/Run0{rr}/1stLevel{loc_suf}.fsf'
-                suf = f'{ss}_{rr}'
-                f = open(f"{job_name}.sh", "a")
-                f.writelines(setup_sbatch(suf))
-                f.writelines(job_cmd)
-                f.close()
-
-                
-                #pdb.set_trace()
-                subprocess.run(['sbatch', f"{job_name}.sh"],check=True, capture_output=True, text=True)
-                
-                os.remove(f"{job_name}.sh")
-
-        if run_highlevel == True:
-            job_cmd = f'feat {func_dir}/HighLevel{loc_suf}.fsf'
-            suf = f'{ss}'
-            f = open(f"{job_name}.sh", "a")
-            f.writelines(setup_sbatch(suf))
-            f.writelines(job_cmd)
-            f.close()
-
-            
-            
-            subprocess.run(['sbatch', f"{job_name}.sh"],check=True, capture_output=True, text=True)
-            
-            os.remove(f"{job_name}.sh")
-
-    #break
-'''
 
 
 

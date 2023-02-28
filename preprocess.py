@@ -3,6 +3,7 @@ import shutil
 import sys
 import subprocess
 from glob import glob as glob
+import pdb
 
 
 exp = sys.argv[1]
@@ -13,7 +14,7 @@ print(exp, sub, flush = True)
 #add exp to each item in sub_list
 #
 
-tasks = ['spaceloc','toolloc', 'localizer']
+tasks = ['spaceloc', 'toolloc','loc']
 
 ses = 1
 runs = [1,2,3]

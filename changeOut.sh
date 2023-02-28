@@ -7,28 +7,28 @@
 #
 
 
-subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012 2013 2014 2015 2016 2017 2018"
+#subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012 2013 2014 2015 2016 2017 2018"
+subj_list="025 038 057 059 064 067 068 071 083 084 085 087 088 093 094 095 096 097 103 104 105 106 107 hemispace1001 hemispace1002 hemispace1003 hemispace2001 hemispace2002 hemispace2003"
+subj_list="108 109"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
 runs=("1" "2" "3")
-ogSub="1002"
-exp="spaceloc"
+ogSub="hemispace2001"
+exp="hemispace"
 #exp="docnet"
-cond="spaceloc depthloc distloc toolloc"
-cond="toolloc spaceloc"
-suf="_all"
+#cond="spaceloc depthloc distloc toolloc"
+cond="spaceloc toolloc loc"
+suf=""
 sesh="01"
-#subj_list="1001 1002"
-#runs=("1" "2")
 
 
 dataDir=/lab_data/behrmannlab/vlad/${exp}
 
 ###############################
-ogDir=$dataDir/sub-${exp}${ogSub}/ses-${sesh}/derivatives/fsl
+ogDir=$dataDir/sub-${ogSub}/ses-${sesh}/derivatives/fsl
 for sub in $subj_list
 do
 	
-	subjDir=$dataDir/sub-${exp}${sub}/ses-${sesh}/derivatives/fsl
+	subjDir=$dataDir/sub-${sub}/ses-${sesh}/derivatives/fsl
 
 #cd $subjDir
 
@@ -48,6 +48,9 @@ do
 			sed -i "s/run-01/run-0${r}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change run for file and output
 			sed -i "s/run1/run${r}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change run for file and output
 			sed -i "s/Run1/Run${r}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change run for covs
+
+			#copy catloc files
+			
 			continue
 
 		done

@@ -5,15 +5,20 @@ module load fsl-6.0.3
 
 
 subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
-subj_list="2017 2018"
+subj_list="025 038 057 059 064 067 068 071 083 084 085 087 088 093 094 095 096 097\
+ 103 104 105 106 107\
+  hemispace1001 hemispace1002 hemispace1003 hemispace2001 hemispace2002 hemispace2003\
+   spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006\
+    spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012\
+	 spaceloc2013 spaceloc2014 spaceloc2015 spaceloc2016 spaceloc2017 spaceloc2018"
+subj_list="hemispace1001 hemispace1002 hemispace1003 hemispace1004 hemispace1006 hemispace1007"
+exp="hemispace"
 
-exp="spaceloc"
-roi="PPC APC"
-roi="LO PFS"
-#parcelType=mruczek_parcels/binary
-parcelType=julian_parcels
-mniBrain=$FSLDIR/data/standard/MNI152_T1_1mm_brain.nii.gz #this is the parcel for both julian and mruczek
-anat=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz #all subs were registered to a 2mm brain
+roi="dorsal_visual_cortex ventral_visual_cortex"
+parcelType=mruczek_parcels/binary
+#parcelType=julian_parcels
+mniBrain=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz #this is the parcel for both julian and mruczek
+#anat=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz #all subs were registered to a 2mm brain
 
 parcelDir=/user_data/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}
@@ -22,8 +27,8 @@ studyDir=/lab_data/behrmannlab/vlad/${exp}
 for sub in $subj_list
 do
 	echo $sub
-	subjDir=$studyDir/sub-${exp}${sub}/ses-01/derivatives
-	#anat=$studyDir/sub-${exp}${sub}/ses-01/anat/sub-${exp}${sub}_ses-01_T1w_brain.nii.gz	
+	subjDir=$studyDir/sub-${sub}/ses-01/derivatives
+	anat=$studyDir/sub-${sub}/ses-01/anat/sub-${sub}_ses-01_T1w_brain_mirrored.nii.gz	
     #anat=$studyDir/preprocessed_data/sub-${sub}/sub-${sub}_normed_anat.nii.gz
 	mkdir $subjDir/rois
 	mkdir $subjDir/rois/parcels
@@ -35,8 +40,9 @@ do
 	for rr in $roi
 	do
 		#Register binary files to anatomical
-		flirt -in $parcelDir/l${rr}.nii.gz -ref $anat -out $roiDir/l${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear
-		flirt -in $parcelDir/r${rr}.nii.gz -ref $anat -out $roiDir/r${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear	
+		#flirt -in $parcelDir/l${rr}.nii.gz -ref $anat -out $roiDir/l${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear
+		#flirt -in $parcelDir/r${rr}.nii.gz -ref $anat -out $roiDir/r${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear	
+		flirt -in $parcelDir/${rr}.nii.gz -ref $anat -out $roiDir/${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear	
 	done
 
 done
