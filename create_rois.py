@@ -1,15 +1,21 @@
 import subprocess
 import os
+import pdb
 
+#ADD "spaceloc1001",
 subj_list=["spaceloc1001","spaceloc1002","spaceloc1003","spaceloc1004","spaceloc1005", "spaceloc1006",
-"spaceloc1007","spaceloc1008","spaceloc1009","spaceloc1010", "spaceloc1011","spaceloc1012"]
-subj_list=["spaceloc2017","spaceloc2018"]
+"spaceloc1007","spaceloc1008","spaceloc1009","spaceloc1010", "spaceloc1011","spaceloc1012", 
+"spaceloc2013", "spaceloc2014", "spaceloc2015", "spaceloc2016", "spaceloc2017", "spaceloc2018"]
+
+
+
 #subj_list = list(range(2000,2020))
 
-exp="spaceloc"
+exp="bwoc"
 cond=["spaceloc", "depthloc", "distloc","toolloc"]
+cond = ["toolloc"]
 #cond=["FBOSS_func"]
-loc_suf="_roi"
+loc_suf=""
 
 #Rois
 roi=["V3ab", "PPC", "APC", "V4", "LO", "PFS"]
@@ -21,7 +27,7 @@ roi=["PPC", "APC", "LO", "PFS"]
 #the number of copes in each list corresponds to the number of ROIs (e.g., PPC, APC.. etc)
 cope_num=[[1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1, 1, 1, 2, 2, 2], [1,1,1,5,5,5]]
 cope_num=[[1, 1,  2, 2], [1, 1, 2, 2], [1, 1, 2, 2], [1,1,5,5]]
-#cope_num=[[8, 8]]
+cope_num=[[5, 5,5,5]]
 
 
 exp_dir=f"/lab_data/behrmannlab/vlad/{exp}"
@@ -40,6 +46,7 @@ for ss in subj_list:
         for rr in range(0,len(roi)):
 
             for lr in ["l", "r"]:
+                
                 #Maybe check if ROI and data exist before creating it
                 print(ss, lr, cc, roi[rr], cope_num[cc_num][rr])
 

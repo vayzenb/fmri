@@ -5,22 +5,22 @@ import os
 import pdb
 
 subj_list=["spaceloc1001","spaceloc1002","spaceloc1003","spaceloc1004","spaceloc1005", "spaceloc1006",
-"spaceloc1007","spaceloc1008","spaceloc1009","spaceloc1010", "spaceloc1011","spaceloc1012"]
-subj_list=["spaceloc2013","spaceloc2014","spaceloc2015","spaceloc2016","spaceloc2017","spaceloc2018"]
+"spaceloc1007","spaceloc1008","spaceloc1009","spaceloc1010", "spaceloc1011","spaceloc1012", 
+"spaceloc2013", "spaceloc2014", "spaceloc2015", "spaceloc2016", "spaceloc2017", "spaceloc2018"]
 
 
-exp='spaceloc'
+exp='bwoc'
 exp_dir=f"/lab_data/behrmannlab/vlad/{exp}"
 
 rois=["PPC", "APC", "LO", "PFS"]
-cond=["spaceloc", "depthloc", "distloc","toolloc"]
+cond=["toolloc"]
 mni='/opt/fsl/6.0.3/data/standard/MNI152_T1_2mm_brain.nii.gz'
 #mni='$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz' 
 
 rad =6 #size in mm
 
 for ss in subj_list:
-    print(ss)
+    
     sub_dir = f"{exp_dir}/sub-{ss}/ses-01/derivatives"
     
     roi_dir = f'{sub_dir}/rois'
@@ -34,6 +34,7 @@ for ss in subj_list:
                 roi = f'{lr}{rr}_{cc}'
                 
                 if os.path.exists(f'{roi_dir}/{roi}.nii.gz'):
+                    print(ss, roi)
                     loc_df = pd.read_csv(f'{roi_dir}/data/{roi}.txt',sep="  ", header=None, names = ["x", "y", "z", "loc"], engine = 'python')
                     loc_df = loc_df.sort_values(by =['loc'], ascending=False)
 
@@ -51,6 +52,9 @@ for ss in subj_list:
                     #Binarize the sphere
                     bash_cmd = f'fslmaths {roi_dir}/spheres/{roi}_sphere.nii.gz -bin {roi_dir}/spheres/{roi}_sphere.nii.gz'
                     subprocess.run(bash_cmd.split(), check=True)
+                
+                else:
+                    print(ss, f'{roi} does not exist')
 
 
 

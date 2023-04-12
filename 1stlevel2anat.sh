@@ -5,17 +5,19 @@ module load fsl-6.0.3
 
 subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012"
 subj_list="2001 2002 2003 2004 2005 2007 2008 2012 2013 2014 2015 2016"
-subj_list="2017 2018"
+subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006\
+    spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012\
+	 spaceloc2013 spaceloc2014 spaceloc2015 spaceloc2016 spaceloc2017 spaceloc2018"
 
 run="1 2 3 4 5 6 7 8"
 #run="7 8"
-exp=docnet
+exp=bwoc
 #exp=spaceloc
 cond="spaceloc toolloc distloc depthloc"
 #cond="FBOSS_func"
-cond="catmvpa"
+cond="toolloc"
 suf=""
-stat="1 2 3 4 5 6 7 8 9 10 11"
+stat="5"
 
 
 
@@ -27,7 +29,7 @@ anat=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz #all subs were registered 
 for s in $subj_list
 do
 	echo ${s}
-	subjDir=${dir}/sub-${exp}${s}/ses-02/derivatives/fsl
+	subjDir=${dir}/sub-${s}/ses-01/derivatives/fsl
 	#subjDir=${dir}/MAMRI${s}
 	#anat=$subjDir/anat/MAMRI${s}_anatomy_brain.nii.gz
 	

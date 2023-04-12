@@ -7,16 +7,16 @@
 #
 
 
-#subj_list="1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012 2013 2014 2015 2016 2017 2018"
-subj_list="025 038 057 059 064 067 068 071 083 084 085 087 088 093 094 095 096 097 103 104 105 106 107 hemispace1001 hemispace1002 hemispace1003 hemispace2001 hemispace2002 hemispace2003"
-subj_list="108 109"
+subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006 spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012 spaceloc2013 spaceloc2014 spaceloc2015 spaceloc2016 spaceloc2017 spaceloc2018"
+#subj_list="025 038 057 059 064 067 068 071 083 084 085 087 088 093 094 095 096 097 103 104 105 106 107 hemispace1001 hemispace1002 hemispace1003 hemispace2001 hemispace2002 hemispace2003"
+#subj_list="108 109"
 runs=("1" "2" "3" "4" "5" "6" "7" "8")
-runs=("1" "2" "3")
-ogSub="hemispace2001"
-exp="hemispace"
+runs=("1" "2")
+ogSub="spaceloc1001"
+exp="bwoc"
 #exp="docnet"
 #cond="spaceloc depthloc distloc toolloc"
-cond="spaceloc toolloc loc"
+cond="toolloc"
 suf=""
 sesh="01"
 
@@ -41,7 +41,8 @@ do
 		for r in "${runs[@]}";
 		do
 
-			
+			mkdir -p $runDir/run-0${r}
+
 			cp ${ogRun}/run-01/1stLevel${suf}.fsf $runDir/run-0${r}/1stLevel${suf}.fsf #copies fsf from run 1 into the other runs (cp = copy)
 
 			sed -i "s/${ogSub}/${sub}/g" $runDir/run-0${r}/1stLevel${suf}.fsf #change subject

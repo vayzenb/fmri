@@ -12,10 +12,11 @@ pause_crit = 10
 pause_time = 15
 
 runs=list(range(1,4))
-exp = 'hemispace'
-#sub_list = list(range(1002,1013)) + list(range(2013,2019))
-#sub_list = [f'spaceloc{sub}' for sub in sub_list]
+exp = 'bwoc'
+sub_list = list(range(1001,1013)) + list(range(2013,2019))
+sub_list = [f'spaceloc{sub}' for sub in sub_list]
 tasks = ['spaceloc','toolloc', 'loc']
+tasks = ['toolloc']
 
 #sub_list = [25,38,57,59,64,67,68,71,83,84,85,87,88]
 #sub_list = [f'0{sub}' if sub < 100 else f'{sub}' for sub in sub_list]
@@ -24,7 +25,8 @@ sub_list=["025", "038", "057", "059", "064", "067", "068", "071", "083", "084", 
 "hemispace1001", "hemispace1002", "hemispace1003","hemispace1004", "hemispace1006", "hemispace1007",
  "hemispace2001", "hemispace2002", "hemispace2003"]
 
-sub_list=["108", "109"]
+sub_list = list(range(1001,1013)) + list(range(2013,2019))
+sub_list = [f'spaceloc{sub}' for sub in sub_list]
 
 
 
