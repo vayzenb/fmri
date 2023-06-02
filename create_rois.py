@@ -20,7 +20,7 @@ loc_suf=""
 #Rois
 roi=["V3ab", "PPC", "APC", "V4", "LO", "PFS"]
 roi=["PPC", "APC", "LO", "PFS"]
-#roi=["LO", "PFS"]
+
 
 #Specify copes (contrasts) of interest
 #the number of nested lists corresponds to the number of conidionts (e.g., spaceloc, depthloc etc)

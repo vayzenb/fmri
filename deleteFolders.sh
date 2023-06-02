@@ -1,12 +1,12 @@
 #!/bin/bash
 
 subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006 spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012 spaceloc2013 spaceloc2014 spaceloc2015 spaceloc2016 spaceloc2017 spaceloc2018" 
-#subj_list="hemispace1007" 
+
 #subj_list="MAMRI2000 MAMRI2001 MAMRI2002 MAMRI2003 MAMRI2004 MAMRI2005 MAMRI2006 MAMRI2007 MAMRI2008 MAMRI2009 MAMRI2010 MAMRI2011 MAMRI2012 MAMRI2013 MAMRI2014 MAMRI2015 MAMRI2016 MAMRI2017 MAMRI2018 MAMRI2019"
 runs="1 2 3"
-exp="spaceloc"
+exp="bwoc"
 cond="loc spaceloc toolloc"
-#cond="FBOSS_func"
+cond="toolloc"
 
 
 dataDir=/lab_data/behrmannlab/vlad/${exp}
@@ -15,7 +15,10 @@ dataDir=/lab_data/behrmannlab/vlad/${exp}
 for sub in $subj_list
 do
 	echo $sub
-	subjDir=$dataDir/sub-${sub}/ses-01/derivatives/fsl
+	subjDir=$dataDir/sub-${sub}/ses-01/derivatives/
+
+	rm -rf $subjDir/rois/*.nii.gz
+	rm -rf $subjDir/rois/spheres/*.nii.gz
 	#subjDir=$dataDir/${sub}/
 	#echo $subjDir
     for cc in $cond
@@ -40,18 +43,9 @@ do
 			#rm -rf $subjDir/${cc}/run-0${rr}/1stLevel_roi+.feat
 		done
 		#rm -rf $subjDir/${cc}/HighLevel_object.gfeat 
-		rm -rf $subjDir/${cc}/HighLevel+.gfeat
-		rm -rf $subjDir/${cc}/HighLevel++.gfeat 
-		rm -rf $subjDir/${cc}/HighLevel+++.gfeat 
-		#rm -rf $subjDir/${cc}/HighLevel_roi.gfeat
-		#rm -rf $subjDir/${cc}/HighLevel_roi+.gfeat
-		#rm -rf $subjDir/${cc}/HighLevel_roi_stand.gfeat
-		#rm -rf $subjDir/${cc}/HighLevel_roi_stand+.gfeat
-		#rm -rf $subjDir/${cc}/HighLevel++.gfeat &
-		#rm -rf $subjDir/${cc}/HighLevel_roi++.gfeat
-		#rm -rf $subjDir/${cc}/HighLevel_roi_2runs.gfeat
-		#rm -rf $subjDir/${cc}/HighLevel_odd.gfeat
-		#rm -rf $subjDir/${cc}/HighLevel_even.gfeat
+		#rm -rf $subjDir/${cc}/HighLevel+.gfeat
+		#rm -rf $subjDir/${cc}/HighLevel++.gfeat 
+		#rm -rf $subjDir/${cc}/HighLevel+++.gfeat 
 	done
 done
 

@@ -31,7 +31,7 @@ do
 	echo ${s}
 	subjDir=${dir}/sub-${s}/ses-01/derivatives/fsl
 	#subjDir=${dir}/MAMRI${s}
-	#anat=$subjDir/anat/MAMRI${s}_anatomy_brain.nii.gz
+	anat=${dir}/sub-${s}/ses-01/anat/sub-${s}_ses-01_T1w_brain.nii.gz
 	
 	#Create registration matrix from localizer anat to exp anatomy
 	#flirt -in $locDir/anat/DOC${s}_anatomy_brain.nii.gz -ref $expDir/anat/DOC${s}_anatomy_brain.nii.gz -omat $expDir/anat/loc2expFunc.mat -bins 256 -cost corratio -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof 12	

@@ -8,6 +8,7 @@ subj_list=["spaceloc1001","spaceloc1002","spaceloc1003","spaceloc1004","spaceloc
 "spaceloc1007","spaceloc1008","spaceloc1009","spaceloc1010", "spaceloc1011","spaceloc1012", 
 "spaceloc2013", "spaceloc2014", "spaceloc2015", "spaceloc2016", "spaceloc2017", "spaceloc2018"]
 
+subj_list = ["spaceloc1010"]
 
 exp='bwoc'
 exp_dir=f"/lab_data/behrmannlab/vlad/{exp}"

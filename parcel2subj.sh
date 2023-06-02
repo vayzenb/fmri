@@ -14,9 +14,10 @@ subj_list="025 038 057 059 064 067 068 071 083 084 085 087 088 093 094 095 096 0
 subj_list="spaceloc1001 spaceloc1002 spaceloc1003 spaceloc1004 spaceloc1005 spaceloc1006\
     spaceloc1007 spaceloc1008 spaceloc1009 spaceloc1010 spaceloc1011 spaceloc1012\
 	 spaceloc2013 spaceloc2014 spaceloc2015 spaceloc2016 spaceloc2017 spaceloc2018"
+
 exp="bwoc"
 
-roi="PPC APC"
+#roi="PPC APC"
 roi="LO PFS"
 parcelType=mruczek_parcels/binary
 parcelType=julian_parcels
@@ -26,6 +27,8 @@ anat=$FSLDIR/data/standard/MNI152_T1_2mm_brain.nii.gz #all subs were registered 
 parcelDir=/user_data/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
 studyDir=/lab_data/behrmannlab/vlad/${exp}
 #labelDir=/home/vayzenbe/GitHub_Repos/fmri/roiParcels/$parcelType
+
+erode_n=1
 
 for sub in $subj_list
 do
@@ -46,6 +49,20 @@ do
 		flirt -in $parcelDir/l${rr}.nii.gz -ref $anat -out $roiDir/l${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear
 		flirt -in $parcelDir/r${rr}.nii.gz -ref $anat -out $roiDir/r${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear	
 		#flirt -in $parcelDir/${rr}.nii.gz -ref $anat -out $roiDir/${rr}.nii.gz -applyxfm -init $roiDir/stand2func.mat -interp trilinear	
+
+		#fill holes in the binary files
+		fslmaths $roiDir/l${rr}.nii.gz -fillh $roiDir/l${rr}.nii.gz
+		fslmaths $roiDir/r${rr}.nii.gz -fillh $roiDir/r${rr}.nii.gz
+
+		#erode the binary files for erode_n steps
+		for ((i=0; i<$erode_n; i++))
+		do
+			fslmaths $roiDir/l${rr}.nii.gz -kernel 3D -ero $roiDir/l${rr}.nii.gz
+			fslmaths $roiDir/r${rr}.nii.gz -kernel 3D -ero $roiDir/r${rr}.nii.gz
+		done
+
+
+
 	done
 
 done
