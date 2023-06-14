@@ -35,15 +35,19 @@ for sub, out_sub in zip(subs, out_subs):
 
 
     for task, cond, cope in zip(tasks, conds, copes):
-        print(out_sub,  cond)
-        os.makedirs(f'{out_dir}/{out_sub}/{cond}', exist_ok=True)
+        try:
+            print('Copying:', out_sub,  cond)
+            os.makedirs(f'{out_dir}/{out_sub}/{cond}', exist_ok=True)
 
-        cond_file = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/fsl/{task}/HighLevel.gfeat/cope{cope}.feat/stats/zstat1.nii.gz'
-        bash_cmd = f'scp -r vayzenbe@mind.cs.cmu.edu:{cond_file} {out_dir}/{out_sub}/{cond}/'
-        subprocess.run(bash_cmd.split(),check = True)
+            cond_file = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/fsl/{task}/HighLevel.gfeat/cope{cope}.feat/stats/zstat1.nii.gz'
+            bash_cmd = f'scp -r vayzenbe@mind.cs.cmu.edu:{cond_file} {out_dir}/{out_sub}/{cond}/'
+            subprocess.run(bash_cmd.split(),check = True)
 
-        cond_file = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/fsl/{task}/HighLevel.gfeat/cope{cope}.feat/stats/zstat1_reg.nii.gz'
-        bash_cmd = f'scp -r vayzenbe@mind.cs.cmu.edu:{cond_file} {out_dir}/{out_sub}/{cond}/'
-        subprocess.run(bash_cmd.split(),check = True)
+            cond_file = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/fsl/{task}/HighLevel.gfeat/cope{cope}.feat/stats/zstat1_reg.nii.gz'
+            bash_cmd = f'scp -r vayzenbe@mind.cs.cmu.edu:{cond_file} {out_dir}/{out_sub}/{cond}/'
+            subprocess.run(bash_cmd.split(),check = True)
+
+        except:
+            print('Failed:', out_sub,  cond)
 
 
