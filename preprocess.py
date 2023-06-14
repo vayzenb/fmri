@@ -15,9 +15,9 @@ print(exp, sub, flush = True)
 #
 
 tasks = ['spaceloc', 'toolloc','loc']
-
+tasks = ['loc']
 ses = 1
-runs = [1,2,3]
+runs = [1,2]
 
 study_dir = f'/lab_data/behrmannlab/vlad/{exp}'
 
