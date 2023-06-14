@@ -30,7 +30,7 @@ for sub, out_sub in zip(subs, out_subs):
 
     #copy rois
     roi_dir = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/rois'
-    bash_cmd = f'scp -r {roi_dir} {out_dir}/{out_sub}/'
+    bash_cmd = f'scp -r vayzenbe@mind.cs.cmu.edu:{roi_dir} {out_dir}/{out_sub}/'
     subprocess.run(bash_cmd.split(),check = True)
 
 
@@ -39,11 +39,11 @@ for sub, out_sub in zip(subs, out_subs):
         os.makedirs(f'{out_dir}/{out_sub}/{cond}', exist_ok=True)
 
         cond_file = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/fsl/{task}/HighLevel.gfeat/cope{cope}.feat/stats/zstat1.nii.gz'
-        bash_cmd = f'scp -r {cond_file} {out_dir}/{out_sub}/{cond}/'
+        bash_cmd = f'scp -r vayzenbe@mind.cs.cmu.edu:{cond_file} {out_dir}/{out_sub}/{cond}/'
         subprocess.run(bash_cmd.split(),check = True)
 
         cond_file = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/fsl/{task}/HighLevel.gfeat/cope{cope}.feat/stats/zstat1_reg.nii.gz'
-        bash_cmd = f'scp -r {cond_file} {out_dir}/{out_sub}/{cond}/'
+        bash_cmd = f'scp -r vayzenbe@mind.cs.cmu.edu:{cond_file} {out_dir}/{out_sub}/{cond}/'
         subprocess.run(bash_cmd.split(),check = True)
 
 
