@@ -19,6 +19,7 @@ subs = ['sub-hemispace1001','sub-hemispace1002','sub-hemispace1003', 'sub-hemisp
 out_subs = ['KT', 'SI', 'FO','BI','KN','BN','EB','XC']
 
 for sub, out_sub in zip(subs, out_subs):
+
     os.makedirs(f'{out_dir}/{out_sub}', exist_ok=True)
 
     #copy anat
@@ -34,6 +35,7 @@ for sub, out_sub in zip(subs, out_subs):
 
 
     for task, cond, cope in zip(tasks, conds, copes):
+        print(out_sub,  cond)
         os.makedirs(f'{out_dir}/{out_sub}/{cond}', exist_ok=True)
 
         cond_file = f'{study_dir}/{sub}/ses-{ses:02d}/derivatives/fsl/{task}/HighLevel.gfeat/cope{cope}.feat/stats/zstat1.nii.gz'
