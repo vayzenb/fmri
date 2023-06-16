@@ -8,7 +8,7 @@ import os
 exp = 'hemispace'
 tasks = ['spaceloc', 'toolloc','loc','loc']
 conds = ['space', 'tool','word','face']
-copes = [1,1,1,4]
+copes = [1,1,4,1]
 ses = 1
 runs = [1,2]
 
